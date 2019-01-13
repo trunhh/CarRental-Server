@@ -48,6 +48,8 @@ namespace TemplateWebApiPhucThinh
                 {
                     options.Authority = endponit + tenantId;
                     options.RequireHttpsMetadata = false;
+                    
+                    
                 });
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             Paging.ConfigureServices(services);

@@ -7,7 +7,10 @@ using AutoMapper.Configuration;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Microsoft.AspNetCore.Authorization;
 using TemplateWebApiPhucThinh.Data.ModelAppID;
+using System.Linq;
+using System.Net;
 
 namespace TemplateWebApiPhucThinh.Controllers
 {
@@ -106,10 +109,10 @@ namespace TemplateWebApiPhucThinh.Controllers
         var a=JsonConvert.SerializeObject(json);
         var obj = Newtonsoft.Json.JsonConvert.DeserializeObject<TokenLogin>(a);
 
-            if (obj.access_token!=null) {
-                return Ok(1);
-            }
-
+           
+List<String> a12=new List<String>();
+List<String> a1222=new List<String>();
+    a12.AddRange(a1222);
 
         return Ok(obj);
     
@@ -127,10 +130,25 @@ namespace TemplateWebApiPhucThinh.Controllers
     [HttpGet]
     public IActionResult Test1()
     {
-        return Ok("Ok men");
+        string accessToken = User.FindFirst("access").Value;
+         return Forbid();
     }
 
-    
+    [Authorize()]
+    [Route("TestAuthor")]
+    [HttpGet]
+    public IActionResult TestAuthor()
+    {
+        
+        var claims = User.Claims.Select(claim => new { claim.Type, claim.Value }).ToDictionary( t => t.Type, t => t.Value);
+        if(claims.ContainsKey("email")){
+        if(claims["email"].Equals("tmdt2019@gmail.com"))
+            return Ok("ok");
+        }else{
+            return Forbid();
+        }
+      return Forbid();
+    }
 
 
 
