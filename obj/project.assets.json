@@ -6249,7 +6249,9 @@
       "sha512": "BOK5fckW9v7xWjpEI6bPGwkjw10OPVASZcAa8HoWJo/0Mmg4Azddj92v8noU+YgvD/6zNZ9o/RiRXXKxk5rYwQ==",
       "type": "package",
       "path": "microsoft.aspnetcore.razor.design/2.1.1",
+      "hasTools": true,
       "files": [
+        ".nupkg.metadata",
         ".signature.p7s",
         "build/netstandard2.0/Microsoft.AspNetCore.Razor.Design.CodeGeneration.targets",
         "build/netstandard2.0/Microsoft.AspNetCore.Razor.Design.props",
@@ -6611,6 +6613,7 @@
       "sha512": "qbi0uXyB74D+23c24tGc0/zE2HCLrfNFp8+u/Wr1AvOFVVGvyte1LjSqUdafYn/sNlJYTkrr38vWoPkMvHGkmw==",
       "type": "package",
       "path": "microsoft.codeanalysis.analyzers/1.1.0",
+      "hasTools": true,
       "files": [
         ".nupkg.metadata",
         "ThirdPartyNotices.rtf",
@@ -6774,6 +6777,7 @@
       "type": "package",
       "path": "microsoft.dotnet.platformabstractions/2.1.0",
       "files": [
+        ".nupkg.metadata",
         ".signature.p7s",
         "LICENSE.TXT",
         "THIRD-PARTY-NOTICES.TXT",
@@ -7169,6 +7173,7 @@
       "type": "package",
       "path": "microsoft.extensions.dependencymodel/2.1.0",
       "files": [
+        ".nupkg.metadata",
         ".signature.p7s",
         "LICENSE.TXT",
         "THIRD-PARTY-NOTICES.TXT",
@@ -8365,6 +8370,7 @@
       "type": "package",
       "path": "netstandard.library/2.0.3",
       "files": [
+        ".nupkg.metadata",
         "LICENSE.TXT",
         "THIRD-PARTY-NOTICES.TXT",
         "build/netstandard2.0/NETStandard.Library.targets",
@@ -8492,6 +8498,7 @@
       "type": "package",
       "path": "newtonsoft.json/11.0.2",
       "files": [
+        ".nupkg.metadata",
         "LICENSE.md",
         "Newtonsoft.Json.11.0.2.nupkg.sha512",
         "Newtonsoft.Json.nuspec",
@@ -8573,6 +8580,7 @@
       "type": "package",
       "path": "reflectionit.mvc.paging/3.3.0",
       "files": [
+        ".nupkg.metadata",
         ".signature.p7s",
         "lib/netstandard2.0/ReflectionIT.Mvc.Paging.Views.dll",
         "lib/netstandard2.0/ReflectionIT.Mvc.Paging.Views.pdb",
@@ -8587,6 +8595,7 @@
       "type": "package",
       "path": "remotion.linq/2.2.0",
       "files": [
+        ".nupkg.metadata",
         "lib/net35/Remotion.Linq.XML",
         "lib/net35/Remotion.Linq.dll",
         "lib/net40/Remotion.Linq.XML",
@@ -8842,6 +8851,7 @@
       "type": "package",
       "path": "runtime.win-arm64.runtime.native.system.data.sqlclient.sni/4.4.0",
       "files": [
+        ".nupkg.metadata",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "runtime.win-arm64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
@@ -8856,6 +8866,7 @@
       "type": "package",
       "path": "runtime.win-x64.runtime.native.system.data.sqlclient.sni/4.4.0",
       "files": [
+        ".nupkg.metadata",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "runtime.win-x64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
@@ -8870,6 +8881,7 @@
       "type": "package",
       "path": "runtime.win-x86.runtime.native.system.data.sqlclient.sni/4.4.0",
       "files": [
+        ".nupkg.metadata",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "runtime.win-x86.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
@@ -8992,6 +9004,7 @@
       "type": "package",
       "path": "system.buffers/4.5.0",
       "files": [
+        ".nupkg.metadata",
         ".signature.p7s",
         "LICENSE.TXT",
         "THIRD-PARTY-NOTICES.TXT",
@@ -11206,6 +11219,7 @@
       "type": "package",
       "path": "system.net.websockets.websocketprotocol/4.5.1",
       "files": [
+        ".nupkg.metadata",
         ".signature.p7s",
         "LICENSE.TXT",
         "THIRD-PARTY-NOTICES.TXT",
@@ -11223,6 +11237,7 @@
       "type": "package",
       "path": "system.numerics.vectors/4.5.0",
       "files": [
+        ".nupkg.metadata",
         ".signature.p7s",
         "LICENSE.TXT",
         "THIRD-PARTY-NOTICES.TXT",
@@ -11613,6 +11628,7 @@
       "type": "package",
       "path": "system.reflection.metadata/1.6.0",
       "files": [
+        ".nupkg.metadata",
         ".signature.p7s",
         "LICENSE.TXT",
         "THIRD-PARTY-NOTICES.TXT",
@@ -12477,6 +12493,7 @@
       "type": "package",
       "path": "system.security.cryptography.cng/4.5.0",
       "files": [
+        ".nupkg.metadata",
         ".signature.p7s",
         "LICENSE.TXT",
         "THIRD-PARTY-NOTICES.TXT",
@@ -12625,6 +12642,7 @@
       "type": "package",
       "path": "system.security.cryptography.pkcs/4.5.0",
       "files": [
+        ".nupkg.metadata",
         ".signature.p7s",
         "LICENSE.TXT",
         "THIRD-PARTY-NOTICES.TXT",
@@ -13065,6 +13083,7 @@
       "type": "package",
       "path": "system.text.encodings.web/4.5.0",
       "files": [
+        ".nupkg.metadata",
         ".signature.p7s",
         "LICENSE.TXT",
         "THIRD-PARTY-NOTICES.TXT",
@@ -13236,6 +13255,7 @@
       "type": "package",
       "path": "system.threading.channels/4.5.0",
       "files": [
+        ".nupkg.metadata",
         ".signature.p7s",
         "LICENSE.TXT",
         "THIRD-PARTY-NOTICES.TXT",
@@ -13525,6 +13545,7 @@
       "type": "package",
       "path": "system.valuetuple/4.5.0",
       "files": [
+        ".nupkg.metadata",
         ".signature.p7s",
         "LICENSE.TXT",
         "THIRD-PARTY-NOTICES.TXT",
@@ -13708,6 +13729,7 @@
       "type": "package",
       "path": "system.xml.xmldocument/4.3.0",
       "files": [
+        ".nupkg.metadata",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -13816,6 +13838,7 @@
       "type": "package",
       "path": "system.xml.xpath/4.3.0",
       "files": [
+        ".nupkg.metadata",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -13853,6 +13876,7 @@
       "type": "package",
       "path": "system.xml.xpath.xdocument/4.3.0",
       "files": [
+        ".nupkg.metadata",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -14018,5 +14042,13 @@
         "warn": true
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file C:\\Users\\thinh\\Desktop\\git TMDT\\ThuongMaiDienTu-Backend\\obj\\TemplateWebApiPhucThinh.csproj.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }
