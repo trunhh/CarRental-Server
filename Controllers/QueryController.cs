@@ -48,8 +48,6 @@ namespace TemplateWebApiPhucThinh.Controllers
             if(String.IsNullOrWhiteSpace(location)){
                 DateTime dateRental = Convert.ToDateTime(dateStart);
                 DateTime dateReturn = Convert.ToDateTime(dateEnd);
-                Console.WriteLine(dateRental);
-                Console.WriteLine(dateReturn);
 
                 var listCarAutoDontBusy = (
                     from _car in context.Car 
@@ -89,14 +87,18 @@ namespace TemplateWebApiPhucThinh.Controllers
             }else{
                 DateTime dateRental = Convert.ToDateTime(dateStart);
                 DateTime dateReturn = Convert.ToDateTime(dateEnd);
-                Console.WriteLine(dateRental);
-                Console.WriteLine(dateReturn);
 
                 var listCarAutoDontBusy = (
-                    from _car in context.Car 
+                    from _partner in context.Partner
+                    join _partnerCar in context.PartnerCar on _partner.Id equals _partnerCar.IdPartner
+                    join _car in context.Car on _partnerCar.IsCar equals _car.Id
+                    join _location in context.Location on _partner.Id equals _location.Id
                     where !( 
                         from _orders in context.Orders select _orders.NameCar 
-                    ).Contains(_car.Id) select _car
+                    ).Contains(_car.Id)
+                    where _location.City == location
+                    
+                    select _car
                 ).Distinct().ToList();
                 // SELECT * from Car c WHERE c.Id NOT IN (SELECT od.nameCar from Orders od )
 
