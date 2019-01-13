@@ -13936,11 +13936,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\thinh\\Desktop\\git TMDT\\ThuongMaiDienTu-Backend\\TemplateWebApiPhucThinh.csproj",
+      "projectUniqueName": "c:\\Users\\thinh\\Desktop\\git TMDT\\ThuongMaiDienTu-Backend\\TemplateWebApiPhucThinh.csproj",
       "projectName": "TemplateWebApiPhucThinh",
-      "projectPath": "C:\\Users\\thinh\\Desktop\\git TMDT\\ThuongMaiDienTu-Backend\\TemplateWebApiPhucThinh.csproj",
+      "projectPath": "c:\\Users\\thinh\\Desktop\\git TMDT\\ThuongMaiDienTu-Backend\\TemplateWebApiPhucThinh.csproj",
       "packagesPath": "C:\\Users\\thinh\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\thinh\\Desktop\\git TMDT\\ThuongMaiDienTu-Backend\\obj\\",
+      "outputPath": "c:\\Users\\thinh\\Desktop\\git TMDT\\ThuongMaiDienTu-Backend\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -14042,13 +14042,5 @@
         "warn": true
       }
     }
-  },
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problem reading the cache file C:\\Users\\thinh\\Desktop\\git TMDT\\ThuongMaiDienTu-Backend\\obj\\TemplateWebApiPhucThinh.csproj.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
-    }
-  ]
+  }
 }

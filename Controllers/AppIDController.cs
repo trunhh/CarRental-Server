@@ -80,10 +80,7 @@ namespace TemplateWebApiPhucThinh.Controllers
     [HttpPost]
     public async Task<IActionResult> LoginAccount([FromBody] UserLogin account)
     {
-            if (account.UserName.Equals("tmdt@gmail.com") && account.password.Equals("tmdt"))
-            {
-                return Ok("0");
-            }
+           
       
          var client = _httpClientFactory.CreateClient("appIDUserLogin");
          // client.DefaultRequestHeaders.Add("Authorization","Basic ZGU2MmI1OWEtNGYzMS00NTgwLWI4NTMtMTY1YTRlYmYzYTY0Ok1URmxPRFZtT1dRdE9ESmxPUzAwTkRabExXSTJZVEV0TUdSbE1HRTNOVEE0WWpBNA==");
@@ -109,10 +106,7 @@ namespace TemplateWebApiPhucThinh.Controllers
         var a=JsonConvert.SerializeObject(json);
         var obj = Newtonsoft.Json.JsonConvert.DeserializeObject<TokenLogin>(a);
 
-           
-List<String> a12=new List<String>();
-List<String> a1222=new List<String>();
-    a12.AddRange(a1222);
+
 
         return Ok(obj);
     
