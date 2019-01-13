@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using ReflectionIT.Mvc.Paging;
 using System;
+using System.Collections;
 using System.Linq;
 using System.Threading.Tasks;
 using TemplateWebApiPhucThinh.Data.Model;
@@ -20,7 +21,7 @@ namespace TemplateWebApiPhucThinh.Controllers
         //IMapper Mapper;
         //IConfiguration Configuration;
         private readonly ILocationRepository _repository;
-
+        ChoThueXeContext context = new ChoThueXeContext();
         public LocationController(ILocationRepository repository)
         {
             _repository = repository;
@@ -35,6 +36,19 @@ namespace TemplateWebApiPhucThinh.Controllers
             return Ok(_repository.Create(Location));
         }
      
+
+        [HttpGet]
+        [Route("GetAllLocation")]
+        public IActionResult GetAllLocation()
+        {
+
+            var listAll=(
+                from loc in context.Location
+                select loc.Country 
+            ).Distinct().ToList();
+
+            return Ok(listAll);
+        }
 
         [HttpGet]
         [Route("GetById/{id}")]
