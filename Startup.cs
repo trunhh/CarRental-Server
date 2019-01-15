@@ -25,7 +25,7 @@ namespace TemplateWebApiPhucThinh
 {
     public class Startup
     {
-         static string tenantId = "d5b87848-1b6b-4b73-9f62-bd230025746c";
+        static string tenantId = "d5b87848-1b6b-4b73-9f62-bd230025746c";
         static string endponit = "https://appid-oauth.ng.bluemix.net/oauth/v3/";
         public Startup(IConfiguration configuration)
         {

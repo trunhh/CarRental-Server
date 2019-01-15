@@ -19,20 +19,20 @@ namespace TemplateWebApiForMy.Configure.General
             {
                 c.SwaggerDoc("v1", new Info
                 {
-                    Version = "Virsion 1",
-                    Title = "Thuong mai Dien Tu",
-                    Description = "Description",
+                    Version = "Version 0.1",
+                    Title = "Thương Mại Điện Tử",
+                    Description = "Toàn bộ api ứng dụng được viết tại đây",
                     TermsOfService = "None",
                     Contact = new Contact
                     {
-                        Name = "Shayne Boyer",
+                        Name = "Rental car",
                         Email = string.Empty,
-                        Url = "https://twitter.com/spboyer"
+                        Url = "https://rental-car.azurewebsites.net/"
                     },
                     License = new License
                     {
-                        Name = "Use under LICX",
-                        Url = "https://example.com/license"
+                        Name = "NLU - FIT",
+                        Url = "https://rental-car.azurewebsites.net/"
                     }
                 });
 
