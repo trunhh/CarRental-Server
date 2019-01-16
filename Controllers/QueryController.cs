@@ -132,5 +132,46 @@ namespace TemplateWebApiPhucThinh.Controllers
             }
             
         }
+         [HttpGet]
+        [Route("CheckDatHang")]
+         public IActionResult CheckDatHang(string dateStart, string dateEnd)
+        {
+      DateTime dateRental = Convert.ToDateTime(dateStart);
+                DateTime dateReturn = Convert.ToDateTime(dateEnd);
+
+                var listCarAutoDontBusy = (
+                    from _car in context.Car 
+                    where !( 
+                        from _orders in context.Orders select _orders.NameCar 
+                    ).Contains(_car.Id) select _car
+                ).Distinct().ToList();
+                // SELECT * from Car c WHERE c.Id NOT IN (SELECT od.nameCar from Orders od )
+
+                var ListCar =
+                    (from _partner in context.Partner
+                    join _partnerCar in context.PartnerCar on _partner.Id equals _partnerCar.IdPartner
+                    join _car in context.Car on _partnerCar.IsCar equals _car.Id
+                    // join _location in context.Location on _partner.Id equals _location.Country
+                    join _order in context.Orders on _car.Id equals _order.NameCar
+                    // where _location.City == location
+                    where _order.CarReturnDay < dateRental || _order.DateOfhire > dateReturn
+                    select _car
+                    ).Distinct().ToList();
+            
+                // SELECT  od.dateOfHire, od.payDate from Partner p 	
+                //     JOIN Partner_Car pc on pc.IdPartner = p.Id
+                // 	JOIN Car c ON c.id = pc.IsCar
+                // 	JOIN Orders od ON od.nameCar = c.Id
+                // 	WHERE  od.payDate < '2019-01-06' or od.dateOfHire > '2019-01-08'
+
+               if(listCarAutoDontBusy.Count>0 || ListCar.Count>0){
+                   return Ok(true);
+               }
+                return Ok(false);
+        }
     }
 }
+
+     
+   
+        

@@ -12,6 +12,7 @@ using TemplateWebApiPhucThinh.Repository.IRepository;
 
 namespace TemplateWebApiPhucThinh.Controllers
 {
+    [Authorize()]
     [Route("[controller]")]
     [ApiController]
     public class CarFeatureController : ControllerBase
@@ -26,10 +27,16 @@ namespace TemplateWebApiPhucThinh.Controllers
             _repository = repository;
         }
 
+        
         [HttpPost]
         [Route("Create")]
         public IActionResult Create([FromBody] CarFeature CarFeature)
         {
+            var claims = User.Claims.Select(claim => new { claim.Type, claim.Value }).ToDictionary( t => t.Type, t => t.Value);
+            if(claims.ContainsKey("name")){
+                if( claims["name"].Equals("ADMIN") || claims["name"].Equals("MANAGER") )
+                return Forbid();
+            }
             CarFeature.Id = Guid.NewGuid() + "";
             CarFeature.IsDelete=false;
             return Ok(_repository.Create(CarFeature));
@@ -40,6 +47,11 @@ namespace TemplateWebApiPhucThinh.Controllers
         [Route("GetById/{id}")]
         public IActionResult GetById(string id)
         {
+            var claims = User.Claims.Select(claim => new { claim.Type, claim.Value }).ToDictionary( t => t.Type, t => t.Value);
+            if(claims.ContainsKey("name")){
+                if( claims["name"].Equals("ADMIN") || claims["name"].Equals("MANAGER") )
+                return Forbid();
+            }
             return Ok(_repository.GetById(id));
         }
 
@@ -47,12 +59,22 @@ namespace TemplateWebApiPhucThinh.Controllers
         [Route("Delete/{id}")]
         public IActionResult Delete(string id)
         {
+            var claims = User.Claims.Select(claim => new { claim.Type, claim.Value }).ToDictionary( t => t.Type, t => t.Value);
+            if(claims.ContainsKey("name")){
+                if( claims["name"].Equals("ADMIN") || claims["name"].Equals("MANAGER") )
+                return Forbid();
+            }
             return Ok(_repository.Delete(id));
         }
         [HttpPut]
         [Route("Update/{id}")]
         public IActionResult Update(string id, [FromBody] CarFeature CarFeature)
         {
+            var claims = User.Claims.Select(claim => new { claim.Type, claim.Value }).ToDictionary( t => t.Type, t => t.Value);
+            if(claims.ContainsKey("name")){
+                if( claims["name"].Equals("ADMIN") || claims["name"].Equals("MANAGER") )
+                return Forbid();
+            }
             return Ok(_repository.Update(id, CarFeature));
         }
         [HttpGet]
@@ -60,7 +82,11 @@ namespace TemplateWebApiPhucThinh.Controllers
         public IActionResult Paging(int pagesize, int pageNow)
         {
             
-            
+            var claims = User.Claims.Select(claim => new { claim.Type, claim.Value }).ToDictionary( t => t.Type, t => t.Value);
+            if(claims.ContainsKey("name")){
+                if( claims["name"].Equals("ADMIN") || claims["name"].Equals("MANAGER") )
+                return Forbid();
+            }
             return Ok(_repository.Paging(pagesize, pageNow, "color"));
 
         }
@@ -70,7 +96,11 @@ namespace TemplateWebApiPhucThinh.Controllers
         public IActionResult CountOfPaging(int pagesize, int pageNow)
         {
             
-            
+            var claims = User.Claims.Select(claim => new { claim.Type, claim.Value }).ToDictionary( t => t.Type, t => t.Value);
+            if(claims.ContainsKey("name")){
+                if( claims["name"].Equals("ADMIN") || claims["name"].Equals("MANAGER") )
+                return Forbid();
+            }
             return Ok(_repository.CountOfPaging(pagesize, pageNow));
 
         }
@@ -79,14 +109,25 @@ namespace TemplateWebApiPhucThinh.Controllers
         public IActionResult CountAll(int pagesize, int pageNow)
         {
             
-            
+            var claims = User.Claims.Select(claim => new { claim.Type, claim.Value }).ToDictionary( t => t.Type, t => t.Value);
+            if(claims.ContainsKey("name")){
+                if( claims["name"].Equals("ADMIN") || claims["name"].Equals("MANAGER") )
+                return Forbid();
+            }
             return Ok(_repository.CountAll());
 
         }
+         
         [HttpDelete]
         [Route("DeleteEnable/{id}")]
         public IActionResult DeleteEnable(string id)
         {
+
+            var claims = User.Claims.Select(claim => new { claim.Type, claim.Value }).ToDictionary( t => t.Type, t => t.Value);
+            if(claims.ContainsKey("name")){
+                if( claims["name"].Equals("ADMIN") || claims["name"].Equals("MANAGER") )
+                return Forbid();
+            }
             if (string.IsNullOrWhiteSpace(id))
             {
                 return BadRequest();

@@ -7,7 +7,10 @@ using AutoMapper.Configuration;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Microsoft.AspNetCore.Authorization;
 using TemplateWebApiPhucThinh.Data.ModelAppID;
+using System.Linq;
+using System.Net;
 
 namespace TemplateWebApiPhucThinh.Controllers
 {
@@ -77,10 +80,7 @@ namespace TemplateWebApiPhucThinh.Controllers
     [HttpPost]
     public async Task<IActionResult> LoginAccount([FromBody] UserLogin account)
     {
-            if (account.UserName.Equals("tmdt@gmail.com") && account.password.Equals("tmdt"))
-            {
-                return Ok("0");
-            }
+           
       
          var client = _httpClientFactory.CreateClient("appIDUserLogin");
          // client.DefaultRequestHeaders.Add("Authorization","Basic ZGU2MmI1OWEtNGYzMS00NTgwLWI4NTMtMTY1YTRlYmYzYTY0Ok1URmxPRFZtT1dRdE9ESmxPUzAwTkRabExXSTJZVEV0TUdSbE1HRTNOVEE0WWpBNA==");
@@ -106,9 +106,6 @@ namespace TemplateWebApiPhucThinh.Controllers
         var a=JsonConvert.SerializeObject(json);
         var obj = Newtonsoft.Json.JsonConvert.DeserializeObject<TokenLogin>(a);
 
-            if (obj.access_token!=null) {
-                return Ok(1);
-            }
 
 
         return Ok(obj);
@@ -127,10 +124,25 @@ namespace TemplateWebApiPhucThinh.Controllers
     [HttpGet]
     public IActionResult Test1()
     {
-        return Ok("Ok men");
+        string accessToken = User.FindFirst("access").Value;
+         return Forbid();
     }
 
-    
+    [Authorize()]
+    [Route("TestAuthor")]
+    [HttpGet]
+    public IActionResult TestAuthor()
+    {
+        
+        var claims = User.Claims.Select(claim => new { claim.Type, claim.Value }).ToDictionary( t => t.Type, t => t.Value);
+        if(claims.ContainsKey("email")){
+        if(claims["email"].Equals("tmdt2019@gmail.com"))
+            return Ok("ok");
+        }else{
+            return Forbid();
+        }
+      return Forbid();
+    }
 
 
 

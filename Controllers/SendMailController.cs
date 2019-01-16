@@ -14,7 +14,7 @@ namespace TemplateWebApiPhucThinh.Controllers
 
         [HttpGet]
         [Route("sendMail")]
-        public  IActionResult sendMail(string email)
+        public  IActionResult sendMail(string email ,string contentBody)
         {
             var message = new MimeMessage();
             message.From.Add(new MailboxAddress( "Phuc Thinh", "nguyenphucthinhdh15dtb@gmail.com"));
@@ -22,7 +22,7 @@ namespace TemplateWebApiPhucThinh.Controllers
             message.Subject = "Cho thue Xe";
             message.Body = new TextPart("plain")
             {
-                Text = "helo"
+                Text = contentBody
             };
             using (var client =new SmtpClient())
             {
