@@ -17,6 +17,7 @@ namespace TemplateWebApiPhucThinh.Controllers
     [ApiController]
     public class CarController : ControllerBase
     {
+        ChoThueXeContext context =new ChoThueXeContext();
         //ICustomerRepository CustomerRepository;
         //IMapper Mapper;
         //IConfiguration Configuration;
@@ -193,6 +194,31 @@ namespace TemplateWebApiPhucThinh.Controllers
             // }
             
             return Ok(_repository.PagingConditionPrice( condition,  pageIndex,  pageSize,  sortOrder,  priceStart,  priceEnd));
+
+        }
+
+        [HttpGet]
+        [Route("PagingConditionGetByEmail/pagesize/pageNow/condition")]
+        public IActionResult PagingConditionGetByEmail(int pagesize, int pageNow,string condition)
+        {
+            if(String.IsNullOrEmpty(condition)){
+                condition="";
+            }
+             var claims = User.Claims.Select(claim => new { claim.Type, claim.Value }).ToDictionary( t => t.Type, t => t.Value);
+            if(claims.ContainsKey("name")){
+                if( !claims["name"].Equals("ADMIN") || !claims["name"].Equals("MANAGER") ){
+                 var list = (from _car in context.Car
+                 join _partnerCar in context.PartnerCar on _car.Id equals _partnerCar.IsCar
+                 join _partner in context.Partner on _partnerCar.IdPartner equals _partner.Id
+                where _car.IsDelete==false
+                where _partner.Email==claims["email"]
+                where _car.Name.Contains(condition)
+                 select _car).OrderByDescending(x => x.Price).Skip((pageNow - 1) * pagesize).Take(pagesize).ToList();
+                   return Ok(list);
+                    }
+                }
+             return Forbid();
+            
 
         }
     }

@@ -20,6 +20,7 @@ namespace TemplateWebApiPhucThinh.Controllers
         //ICustomerRepository CustomerRepository;
         //IMapper Mapper;
         //IConfiguration Configuration;
+        ChoThueXeContext context =new ChoThueXeContext();
         private readonly IPartnerRepository _repository;
 
         public PartnerController(IPartnerRepository repository)
@@ -210,6 +211,24 @@ namespace TemplateWebApiPhucThinh.Controllers
             }
             return Forbid();
 
+        }
+
+        [HttpGet]
+        [Route("GetByEmail")]
+        public IActionResult GetByEmail()
+        {
+
+            var claims = User.Claims.Select(claim => new { claim.Type, claim.Value }).ToDictionary( t => t.Type, t => t.Value);
+            if(claims.ContainsKey("name")){
+                if( !claims["name"].Equals("ADMIN") || !claims["name"].Equals("MANAGER") ){
+                    
+                    return Ok(context.Partner.Where(s=>s.Email.Equals(claims["email"])));
+                }
+            }else{
+                return Forbid();
+            }
+            return Forbid();
+          
         }
     }
 }

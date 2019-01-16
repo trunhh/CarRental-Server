@@ -11,6 +11,8 @@ using Microsoft.AspNetCore.Authorization;
 using TemplateWebApiPhucThinh.Data.ModelAppID;
 using System.Linq;
 using System.Net;
+using TemplateWebApiPhucThinh.Repository.IRepository;
+using TemplateWebApiPhucThinh.Data.Model;
 
 namespace TemplateWebApiPhucThinh.Controllers
 {
@@ -22,11 +24,12 @@ namespace TemplateWebApiPhucThinh.Controllers
      private const string tenantId ="d5b87848-1b6b-4b73-9f62-bd230025746c";
      private const string keySecret ="MTFlODVmOWQtODJlOS00NDZlLWI2YTEtMGRlMGE3NTA4YjA4";
      private const string clientId ="de62b59a-4f31-4580-b853-165a4ebf3a64";
-
+    private readonly IPartnerRepository _repository;
     
-    public AppIDController(IHttpClientFactory httpClientFactory)
+    public AppIDController(IHttpClientFactory httpClientFactory,IPartnerRepository repository)
     {
         _httpClientFactory = httpClientFactory;
+        _repository=repository;
     }
      
      private string getIAM()
@@ -69,9 +72,16 @@ namespace TemplateWebApiPhucThinh.Controllers
         });
         var result = client.PostAsync("management/v4/"+tenantId+"/cloud_directory/sign_up", byteContent).Result;
         string resultContent = result.Content.ReadAsStringAsync().Result;
+        if(resultContent.Contains(account.emails[0].value)){
+        Partner partnerRegister=new Partner();
+        partnerRegister.Email=account.emails[0].value;
+        partnerRegister.Id=Guid.NewGuid()+"";
+        partnerRegister.IsDelete=false;
+        partnerRegister.NameCompany=account.userName;
+       _repository.Create(partnerRegister);
+        return Ok("Dang ky thanh cong "+account.emails[0].value);
+        }
        
-       
-        
         return Ok(resultContent);
 
         
