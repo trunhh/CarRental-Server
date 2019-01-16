@@ -34,12 +34,14 @@ namespace TemplateWebApiPhucThinh.Controllers
         {
             var claims = User.Claims.Select(claim => new { claim.Type, claim.Value }).ToDictionary( t => t.Type, t => t.Value);
             if(claims.ContainsKey("name")){
-                if( claims["name"].Equals("ADMIN") || claims["name"].Equals("MANAGER") )
+                if( claims["name"].Equals("ADMIN") || claims["name"].Equals("MANAGER") ){
+                    CarFeature.Id = Guid.NewGuid() + "";
+                    CarFeature.IsDelete=false;
+                    return Ok(_repository.Create(CarFeature));
+                }
+            }else{
                 return Forbid();
             }
-            CarFeature.Id = Guid.NewGuid() + "";
-            CarFeature.IsDelete=false;
-            return Ok(_repository.Create(CarFeature));
         }
      
 
@@ -50,9 +52,10 @@ namespace TemplateWebApiPhucThinh.Controllers
             var claims = User.Claims.Select(claim => new { claim.Type, claim.Value }).ToDictionary( t => t.Type, t => t.Value);
             if(claims.ContainsKey("name")){
                 if( claims["name"].Equals("ADMIN") || claims["name"].Equals("MANAGER") )
+                return Ok(_repository.GetById(id));
+            }else{
                 return Forbid();
             }
-            return Ok(_repository.GetById(id));
         }
 
         [HttpDelete]
@@ -62,10 +65,12 @@ namespace TemplateWebApiPhucThinh.Controllers
             var claims = User.Claims.Select(claim => new { claim.Type, claim.Value }).ToDictionary( t => t.Type, t => t.Value);
             if(claims.ContainsKey("name")){
                 if( claims["name"].Equals("ADMIN") || claims["name"].Equals("MANAGER") )
+                return Ok(_repository.Delete(id));
+            }else{
                 return Forbid();
             }
-            return Ok(_repository.Delete(id));
         }
+
         [HttpPut]
         [Route("Update/{id}")]
         public IActionResult Update(string id, [FromBody] CarFeature CarFeature)
@@ -73,48 +78,51 @@ namespace TemplateWebApiPhucThinh.Controllers
             var claims = User.Claims.Select(claim => new { claim.Type, claim.Value }).ToDictionary( t => t.Type, t => t.Value);
             if(claims.ContainsKey("name")){
                 if( claims["name"].Equals("ADMIN") || claims["name"].Equals("MANAGER") )
+                return Ok(_repository.Update(id, CarFeature));
+            }else{
                 return Forbid();
             }
-            return Ok(_repository.Update(id, CarFeature));
         }
+
         [HttpGet]
         [Route("Paging/pagesize/pageNow")]
         public IActionResult Paging(int pagesize, int pageNow)
         {
-            
             var claims = User.Claims.Select(claim => new { claim.Type, claim.Value }).ToDictionary( t => t.Type, t => t.Value);
             if(claims.ContainsKey("name")){
                 if( claims["name"].Equals("ADMIN") || claims["name"].Equals("MANAGER") )
+                return Ok(_repository.Paging(pagesize, pageNow, "color"));
+            }else{
                 return Forbid();
             }
-            return Ok(_repository.Paging(pagesize, pageNow, "color"));
 
         }
 
-         [HttpGet]
+        [HttpGet]
         [Route("CountOfPaging/pagesize/pageNow")]
         public IActionResult CountOfPaging(int pagesize, int pageNow)
         {
-            
             var claims = User.Claims.Select(claim => new { claim.Type, claim.Value }).ToDictionary( t => t.Type, t => t.Value);
             if(claims.ContainsKey("name")){
                 if( claims["name"].Equals("ADMIN") || claims["name"].Equals("MANAGER") )
                 return Forbid();
+            }else{
+                return Ok(_repository.CountOfPaging(pagesize, pageNow));
             }
-            return Ok(_repository.CountOfPaging(pagesize, pageNow));
 
         }
-         [HttpGet]
+
+        [HttpGet]
         [Route("CountAll/pagesize/pageNow")]
         public IActionResult CountAll(int pagesize, int pageNow)
         {
-            
             var claims = User.Claims.Select(claim => new { claim.Type, claim.Value }).ToDictionary( t => t.Type, t => t.Value);
             if(claims.ContainsKey("name")){
                 if( claims["name"].Equals("ADMIN") || claims["name"].Equals("MANAGER") )
+                return Ok(_repository.CountAll());
+            }else{
                 return Forbid();
             }
-            return Ok(_repository.CountAll());
 
         }
          
@@ -125,14 +133,17 @@ namespace TemplateWebApiPhucThinh.Controllers
 
             var claims = User.Claims.Select(claim => new { claim.Type, claim.Value }).ToDictionary( t => t.Type, t => t.Value);
             if(claims.ContainsKey("name")){
-                if( claims["name"].Equals("ADMIN") || claims["name"].Equals("MANAGER") )
+                if( claims["name"].Equals("ADMIN") || claims["name"].Equals("MANAGER") ){
+                    if (string.IsNullOrWhiteSpace(id))
+                    {
+                        return BadRequest();
+                    }
+                    return Ok(_repository.DeleteEnable(id));
+                }
+            }else{
                 return Forbid();
             }
-            if (string.IsNullOrWhiteSpace(id))
-            {
-                return BadRequest();
-            }
-            return Ok(_repository.DeleteEnable(id));
+
         }
     }
 }

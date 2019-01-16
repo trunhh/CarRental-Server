@@ -31,9 +31,9 @@ namespace TemplateWebApiPhucThinh.Controllers
         [Route("Create")]
         public IActionResult Create([FromBody] Partner Partner)
         {
-        var claims = User.Claims.Select(claim => new { claim.Type, claim.Value }).ToDictionary( t => t.Type, t => t.Value);
+            var claims = User.Claims.Select(claim => new { claim.Type, claim.Value }).ToDictionary( t => t.Type, t => t.Value);
             if(claims.ContainsKey("email")){
-            if(claims["email"].Equals("tmdt2019@gmail.com")|| claims["name"].Equals("NhanVienTMDT NhanVienTMDT"))
+            if(claims["email"].Equals("tmdt2019@gmail.com") || claims["name"].Equals("NhanVienTMDT NhanVienTMDT"))
             
                 Partner.Id = Guid.NewGuid() + "";
                 Partner.IsDelete=false;
