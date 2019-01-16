@@ -7,38 +7,39 @@ using TemplateWebApiPhucThinh.Data.Model;
 using System.Collections;
 namespace TemplateWebApiPhucThinh.Controllers
 {
+    
     [Route("[controller]")]
     [ApiController]
 
     public class QueryController : ControllerBase
     {
         ChoThueXeContext context = new ChoThueXeContext();
+
+        [Authorize()]
         [HttpGet]
         [Route("LayDanhSachGanHetHan")]
         public IActionResult LayDanhSachGanHetHan()
         {
-            DateTime today = System.DateTime.Now;
-           
-
-
-            var List =
-          (from _partner in context.Partner
-           join _partnerTenantPackage in context.PartnerTenantPackage on _partner.Id equals _partnerTenantPackage.Id
-           join _package in context.Package on _partnerTenantPackage.IdPackage equals _package.Id
-
-
-
-           select new
-           {
-               idPackage= _partnerTenantPackage.IdPackage,
-               NameParnert = _partner.NameCompany,
-               Email = _partner.Email,
-               DayHetHan =(_partnerTenantPackage.DateTenant.AddDays(Int32.Parse(_package.Name))-today).Days,
-
-
-           }).Where(s=>s.DayHetHan<=10).ToList();
-           
-            return Ok(List);
+            var claims = User.Claims.Select(claim => new { claim.Type, claim.Value }).ToDictionary( t => t.Type, t => t.Value);
+            if(claims.ContainsKey("name")){
+                if( claims["name"].Equals("ADMIN") || claims["name"].Equals("MANAGER") ){
+                    DateTime today = System.DateTime.Now;
+                    var List =
+                        (from _partner in context.Partner
+                        join _partnerTenantPackage in context.PartnerTenantPackage on _partner.Id equals _partnerTenantPackage.Id
+                        join _package in context.Package on _partnerTenantPackage.IdPackage equals _package.Id
+                        select new
+                        {
+                            idPackage= _partnerTenantPackage.IdPackage,
+                            NameParnert = _partner.NameCompany,
+                            Email = _partner.Email,
+                            DayHetHan =(_partnerTenantPackage.DateTenant.AddDays(Int32.Parse(_package.Name))-today).Days,
+                        }).Where(s=>s.DayHetHan<=10).ToList();
+                    return Ok(List);
+                }
+            }else{
+                return Forbid();
+            }
         }
 
         [HttpGet]
@@ -132,11 +133,12 @@ namespace TemplateWebApiPhucThinh.Controllers
             }
             
         }
-         [HttpGet]
+
+        [HttpGet]
         [Route("CheckDatHang")]
          public IActionResult CheckDatHang(string dateStart, string dateEnd)
         {
-      DateTime dateRental = Convert.ToDateTime(dateStart);
+                DateTime dateRental = Convert.ToDateTime(dateStart);
                 DateTime dateReturn = Convert.ToDateTime(dateEnd);
 
                 var listCarAutoDontBusy = (

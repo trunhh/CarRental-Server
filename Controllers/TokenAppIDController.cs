@@ -25,6 +25,8 @@ namespace TemplateWebApiPhucThinh.Controllers
             return GetDataFromToken.GetDataIdentityFormToken(claims);
 
         }
+
+        
         [Authorize]
         [HttpGet]
         [Route("HaveAuthorize")]
