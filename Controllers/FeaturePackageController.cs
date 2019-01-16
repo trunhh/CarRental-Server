@@ -12,6 +12,7 @@ using TemplateWebApiPhucThinh.Repository.IRepository;
 
 namespace TemplateWebApiPhucThinh.Controllers
 {
+    [Authorize()]
     [Route("[controller]")]
     [ApiController]
     public class FeaturePackageController : ControllerBase
@@ -30,9 +31,17 @@ namespace TemplateWebApiPhucThinh.Controllers
         [Route("Create")]
         public IActionResult Create([FromBody] FeaturePackage FeaturePackage)
         {
-            FeaturePackage.Id = Guid.NewGuid() + "";
-            FeaturePackage.IsDelete=false;
-            return Ok(_repository.Create(FeaturePackage));
+            var claims = User.Claims.Select(claim => new { claim.Type, claim.Value }).ToDictionary( t => t.Type, t => t.Value);
+            if(claims.ContainsKey("name")){
+                if( claims["name"].Equals("ADMIN") || claims["name"].Equals("MANAGER") ){
+                      FeaturePackage.Id = Guid.NewGuid() + "";
+                      FeaturePackage.IsDelete=false;
+                      return Ok(_repository.Create(FeaturePackage));
+                }
+            }else{
+                return Forbid();
+            }
+           
         }
      
 
@@ -40,58 +49,103 @@ namespace TemplateWebApiPhucThinh.Controllers
         [Route("GetById/{id}")]
         public IActionResult GetById(string id)
         {
-            return Ok(_repository.GetById(id));
+             var claims = User.Claims.Select(claim => new { claim.Type, claim.Value }).ToDictionary( t => t.Type, t => t.Value);
+            if(claims.ContainsKey("name")){
+                if( claims["name"].Equals("ADMIN") || claims["name"].Equals("MANAGER") ){
+                       return Ok(_repository.GetById(id));
+                }
+            }else{
+                return Forbid();
+            }
+           
         }
 
         [HttpDelete]
         [Route("Delete/{id}")]
         public IActionResult Delete(string id)
         {
-            return Ok(_repository.Delete(id));
+            var claims = User.Claims.Select(claim => new { claim.Type, claim.Value }).ToDictionary( t => t.Type, t => t.Value);
+            if(claims.ContainsKey("name")){
+                if( claims["name"].Equals("ADMIN") || claims["name"].Equals("MANAGER") ){
+                       return Ok(_repository.Delete(id));
+                }
+            }else{
+                return Forbid();
+            }
+            
         }
         [HttpPut]
         [Route("Update/{id}")]
         public IActionResult Update(string id, [FromBody] FeaturePackage FeaturePackage)
         {
-            return Ok(_repository.Update(id, FeaturePackage));
+            var claims = User.Claims.Select(claim => new { claim.Type, claim.Value }).ToDictionary( t => t.Type, t => t.Value);
+            if(claims.ContainsKey("name")){
+                if( claims["name"].Equals("ADMIN") || claims["name"].Equals("MANAGER") ){
+                       return Ok(_repository.Update(id, FeaturePackage));
+                }
+            }else{
+                return Forbid();
+            }
+            
+            
         }
         [HttpGet]
         [Route("Paging/pagesize/pageNow")]
         public IActionResult Paging(int pagesize, int pageNow)
         {
-            
-            
-            return Ok(_repository.Paging(pagesize, pageNow, "color"));
-
+             var claims = User.Claims.Select(claim => new { claim.Type, claim.Value }).ToDictionary( t => t.Type, t => t.Value);
+            if(claims.ContainsKey("name")){
+                if( claims["name"].Equals("ADMIN") || claims["name"].Equals("MANAGER") ){
+                       return Ok(_repository.Paging(pagesize, pageNow, "color"));
+                }
+            }else{
+                return Forbid();
+            }
         }
 
          [HttpGet]
         [Route("CountOfPaging/pagesize/pageNow")]
         public IActionResult CountOfPaging(int pagesize, int pageNow)
         {
-            
-            
-            return Ok(_repository.CountOfPaging(pagesize, pageNow));
-
+             var claims = User.Claims.Select(claim => new { claim.Type, claim.Value }).ToDictionary( t => t.Type, t => t.Value);
+            if(claims.ContainsKey("name")){
+                if( claims["name"].Equals("ADMIN") || claims["name"].Equals("MANAGER") ){
+                        return Ok(_repository.CountOfPaging(pagesize, pageNow));
+                }
+            }else{
+                return Forbid();
+            }
         }
          [HttpGet]
         [Route("CountAll/pagesize/pageNow")]
         public IActionResult CountAll(int pagesize, int pageNow)
         {
-            
-            
-            return Ok(_repository.CountAll());
-
+              var claims = User.Claims.Select(claim => new { claim.Type, claim.Value }).ToDictionary( t => t.Type, t => t.Value);
+            if(claims.ContainsKey("name")){
+                if( claims["name"].Equals("ADMIN") || claims["name"].Equals("MANAGER") ){
+                         return Ok(_repository.CountAll());
+                }
+            }else{
+                return Forbid();
+            }
+           
         }
         [HttpDelete]
         [Route("DeleteEnable/{id}")]
         public IActionResult DeleteEnable(string id)
         {
-            if (string.IsNullOrWhiteSpace(id))
-            {
-                return BadRequest();
-            }
-            return Ok(_repository.DeleteEnable(id));
+             var claims = User.Claims.Select(claim => new { claim.Type, claim.Value }).ToDictionary( t => t.Type, t => t.Value);
+            if(claims.ContainsKey("name")){
+                if( claims["name"].Equals("ADMIN") || claims["name"].Equals("MANAGER") ){
+                         if (string.IsNullOrWhiteSpace(id))
+                            {
+                                return BadRequest();
+                            }
+                            return Ok(_repository.DeleteEnable(id));
+                            }
+                        }else{
+                            return Forbid();
+                        }
         }
     }
 }
