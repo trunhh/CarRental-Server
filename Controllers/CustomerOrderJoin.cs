@@ -8,6 +8,7 @@ using System.Collections.Generic;
 
 namespace TemplateWebApiPhucThinh.Controllers
 {
+    [Authorize()]
     [Route("[controller]")]
     [ApiController]
     public class CustomerOrderJoinController : ControllerBase

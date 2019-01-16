@@ -12,6 +12,7 @@ using TemplateWebApiPhucThinh.Repository.IRepository;
 
 namespace TemplateWebApiPhucThinh.Controllers
 {
+    [Authorize()]
     [Route("[controller]")]
     [ApiController]
     public class CustomerController : ControllerBase
@@ -30,9 +31,17 @@ namespace TemplateWebApiPhucThinh.Controllers
         [Route("Create")]
         public IActionResult Create([FromBody] Customer Customer)
         {
-            Customer.Id = Guid.NewGuid() + "";
-            Customer.IsDelete=false;
-            return Ok(_repository.Create(Customer));
+              var claims = User.Claims.Select(claim => new { claim.Type, claim.Value }).ToDictionary( t => t.Type, t => t.Value);
+            if(claims.ContainsKey("name")){
+                if( claims["name"].Equals("ADMIN") || claims["name"].Equals("MANAGER") ){
+                    Customer.Id = Guid.NewGuid() + "";
+                    Customer.IsDelete=false;
+                    return Ok(_repository.Create(Customer));
+                }
+            }else{
+                return Forbid();
+            }
+          
         }
      
 
@@ -40,67 +49,118 @@ namespace TemplateWebApiPhucThinh.Controllers
         [Route("GetById/{id}")]
         public IActionResult GetById(string id)
         {
-            return Ok(_repository.GetById(id));
+             var claims = User.Claims.Select(claim => new { claim.Type, claim.Value }).ToDictionary( t => t.Type, t => t.Value);
+            if(claims.ContainsKey("name")){
+                if( claims["name"].Equals("ADMIN") || claims["name"].Equals("MANAGER") ){
+                    return Ok(_repository.GetById(id));
+                }
+            }else{
+                return Forbid();
+            }
+            
         }
 
         [HttpDelete]
         [Route("Delete/{id}")]
         public IActionResult Delete(string id)
         {
-            return Ok(_repository.Delete(id));
+            var claims = User.Claims.Select(claim => new { claim.Type, claim.Value }).ToDictionary( t => t.Type, t => t.Value);
+            if(claims.ContainsKey("name")){
+                if( claims["name"].Equals("ADMIN") || claims["name"].Equals("MANAGER") ){
+                   return Ok(_repository.Delete(id));
+                }
+            }else{
+                return Forbid();
+            }
+           
         }
         [HttpPut]
         [Route("Update/{id}")]
         public IActionResult Update(string id, [FromBody] Customer Customer)
         {
-            return Ok(_repository.Update(id, Customer));
+            var claims = User.Claims.Select(claim => new { claim.Type, claim.Value }).ToDictionary( t => t.Type, t => t.Value);
+            if(claims.ContainsKey("name")){
+                if( claims["name"].Equals("ADMIN") || claims["name"].Equals("MANAGER") ){
+                    return Ok(_repository.Update(id, Customer));
+                }
+            }else{
+                return Forbid();
+            }
+           
         }
         [HttpGet]
         [Route("Paging/pagesize/pageNow")]
         public IActionResult Paging(int pagesize, int pageNow)
         {
-            
-            
-            return Ok(_repository.Paging(pagesize, pageNow, "color"));
-
+              var claims = User.Claims.Select(claim => new { claim.Type, claim.Value }).ToDictionary( t => t.Type, t => t.Value);
+            if(claims.ContainsKey("name")){
+                if( claims["name"].Equals("ADMIN") || claims["name"].Equals("MANAGER") ){
+                    return Ok(_repository.Paging(pagesize, pageNow, "color"));
+                }
+            }else{
+                return Forbid();
+            }
         }
-
          [HttpGet]
         [Route("CountOfPaging/pagesize/pageNow")]
         public IActionResult CountOfPaging(int pagesize, int pageNow)
         {
-            
-            
-            return Ok(_repository.CountOfPaging(pagesize, pageNow));
-
+             var claims = User.Claims.Select(claim => new { claim.Type, claim.Value }).ToDictionary( t => t.Type, t => t.Value);
+            if(claims.ContainsKey("name")){
+                if( claims["name"].Equals("ADMIN") || claims["name"].Equals("MANAGER") ){
+                    return Ok(_repository.CountOfPaging(pagesize, pageNow));
+                }
+            }else{
+                return Forbid();
+            }
         }
          [HttpGet]
         [Route("CountAll/pagesize/pageNow")]
         public IActionResult CountAll(int pagesize, int pageNow)
         {
-            
-            
-            return Ok(_repository.CountAll());
-
+             var claims = User.Claims.Select(claim => new { claim.Type, claim.Value }).ToDictionary( t => t.Type, t => t.Value);
+            if(claims.ContainsKey("name")){
+                if( claims["name"].Equals("ADMIN") || claims["name"].Equals("MANAGER") ){
+                   return Ok(_repository.CountAll());
+                }
+            }else{
+                return Forbid();
+            }
         }
         [HttpDelete]
         [Route("DeleteEnable/{id}")]
         public IActionResult DeleteEnable(string id)
         {
-            if (string.IsNullOrWhiteSpace(id))
+            
+             var claims = User.Claims.Select(claim => new { claim.Type, claim.Value }).ToDictionary( t => t.Type, t => t.Value);
+            if(claims.ContainsKey("name")){
+                if( claims["name"].Equals("ADMIN") || claims["name"].Equals("MANAGER") ){
+                    if (string.IsNullOrWhiteSpace(id))
             {
                 return BadRequest();
             }
             return Ok(_repository.DeleteEnable(id));
+                }
+            }else{
+                return Forbid();
+            }
+           
         }
 
         [HttpGet]
         [Route("PagingCondition/pagesize/pageNow/condition")]
         public IActionResult PagingCondition(int pagesize, int pageNow,string condition)
         {
+             var claims = User.Claims.Select(claim => new { claim.Type, claim.Value }).ToDictionary( t => t.Type, t => t.Value);
+            if(claims.ContainsKey("name")){
+                if( claims["name"].Equals("ADMIN") || claims["name"].Equals("MANAGER") ){
+                    return Ok(_repository.PagingCondition(pagesize, pageNow, condition));
+                }
+            }else{
+                return Forbid();
+            }
             
             
-            return Ok(_repository.PagingCondition(pagesize, pageNow, condition));
 
         }
 
@@ -108,7 +168,15 @@ namespace TemplateWebApiPhucThinh.Controllers
         [Route("CountCondition/condition")]
         public IActionResult CountCondition(string condition)
         {
-            return Ok(_repository.CountCondition(condition));
+               var claims = User.Claims.Select(claim => new { claim.Type, claim.Value }).ToDictionary( t => t.Type, t => t.Value);
+            if(claims.ContainsKey("name")){
+                if( claims["name"].Equals("ADMIN") || claims["name"].Equals("MANAGER") ){
+                    return Ok(_repository.CountCondition(condition));
+                }
+            }else{
+                return Forbid();
+            }
+           
         }
 
 
@@ -116,9 +184,16 @@ namespace TemplateWebApiPhucThinh.Controllers
         [Route("PagingConditionPrice/condition/pageIndex/pageSize/sortOrder/priceStart/priceEnd")]
         public IActionResult PagingConditionPrice(string condition, int pageIndex, int pageSize, string sortOrder, int priceStart, int priceEnd)
         {
+            var claims = User.Claims.Select(claim => new { claim.Type, claim.Value }).ToDictionary( t => t.Type, t => t.Value);
+            if(claims.ContainsKey("name")){
+                if( claims["name"].Equals("ADMIN") || claims["name"].Equals("MANAGER") ){
+                     return Ok(_repository.PagingConditionPrice( condition,  pageIndex,  pageSize,  sortOrder,  priceStart,  priceEnd));
+                }
+            }else{
+                return Forbid();
+            }
             
-            
-            return Ok(_repository.PagingConditionPrice( condition,  pageIndex,  pageSize,  sortOrder,  priceStart,  priceEnd));
+           
 
         }
     }
