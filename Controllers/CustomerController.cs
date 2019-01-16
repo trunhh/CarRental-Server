@@ -9,7 +9,7 @@ using TemplateWebApiPhucThinh.Data.Model;
 
 using TemplateWebApiPhucThinh.ModelValidation;
 using TemplateWebApiPhucThinh.Repository.IRepository;
-
+using Microsoft.AspNetCore.Authorization;
 namespace TemplateWebApiPhucThinh.Controllers
 {
     [Authorize()]
@@ -41,6 +41,7 @@ namespace TemplateWebApiPhucThinh.Controllers
             }else{
                 return Forbid();
             }
+                return Forbid();
           
         }
      
@@ -57,6 +58,7 @@ namespace TemplateWebApiPhucThinh.Controllers
             }else{
                 return Forbid();
             }
+                return Forbid();
             
         }
 
@@ -72,6 +74,7 @@ namespace TemplateWebApiPhucThinh.Controllers
             }else{
                 return Forbid();
             }
+                return Forbid();
            
         }
         [HttpPut]
@@ -86,6 +89,7 @@ namespace TemplateWebApiPhucThinh.Controllers
             }else{
                 return Forbid();
             }
+                return Forbid();
            
         }
         [HttpGet]
@@ -100,6 +104,7 @@ namespace TemplateWebApiPhucThinh.Controllers
             }else{
                 return Forbid();
             }
+                return Forbid();
         }
          [HttpGet]
         [Route("CountOfPaging/pagesize/pageNow")]
@@ -113,6 +118,7 @@ namespace TemplateWebApiPhucThinh.Controllers
             }else{
                 return Forbid();
             }
+                return Forbid();
         }
          [HttpGet]
         [Route("CountAll/pagesize/pageNow")]
@@ -126,6 +132,7 @@ namespace TemplateWebApiPhucThinh.Controllers
             }else{
                 return Forbid();
             }
+                return Forbid();
         }
         [HttpDelete]
         [Route("DeleteEnable/{id}")]
@@ -144,6 +151,7 @@ namespace TemplateWebApiPhucThinh.Controllers
             }else{
                 return Forbid();
             }
+                return Forbid();
            
         }
 
@@ -159,6 +167,7 @@ namespace TemplateWebApiPhucThinh.Controllers
             }else{
                 return Forbid();
             }
+                return Forbid();
             
             
 
@@ -176,6 +185,7 @@ namespace TemplateWebApiPhucThinh.Controllers
             }else{
                 return Forbid();
             }
+                return Forbid();
            
         }
 
@@ -192,6 +202,7 @@ namespace TemplateWebApiPhucThinh.Controllers
             }else{
                 return Forbid();
             }
+                return Forbid();
             
            
 

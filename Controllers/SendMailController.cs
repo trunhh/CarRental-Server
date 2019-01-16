@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using MimeKit;
 
 using MailKit.Net.Smtp;
-
+using Microsoft.AspNetCore.Authorization;
 namespace TemplateWebApiPhucThinh.Controllers
 {
     [Route("[controller]")]

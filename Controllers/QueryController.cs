@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using TemplateWebApiPhucThinh.Data.Model;
 using System.Collections;
+using Microsoft.AspNetCore.Authorization;
 namespace TemplateWebApiPhucThinh.Controllers
 {
     
@@ -40,6 +41,7 @@ namespace TemplateWebApiPhucThinh.Controllers
             }else{
                 return Forbid();
             }
+                return Forbid();
         }
 
         [HttpGet]

@@ -41,6 +41,7 @@ namespace TemplateWebApiPhucThinh.Controllers
             }else{
                 return Forbid();
             }
+                return Forbid();
            
         }
      
@@ -158,6 +159,7 @@ namespace TemplateWebApiPhucThinh.Controllers
             }else{
                 return Forbid();
             }
+                return Forbid();
           
         }
 

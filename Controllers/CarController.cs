@@ -35,12 +35,15 @@ namespace TemplateWebApiPhucThinh.Controllers
             var claims = User.Claims.Select(claim => new { claim.Type, claim.Value }).ToDictionary( t => t.Type, t => t.Value);
             if(claims.ContainsKey("name")){
                 if( claims["name"].Equals("ADMIN") || claims["name"].Equals("MANAGER") )
+                    Car.Id = Guid.NewGuid() + "";
+                    Car.IsDelete=false;
+                    return Ok(_repository.Create(Car));
+            }else{
+
                     return Forbid();
             }
+                    return Forbid();
       
-            Car.Id = Guid.NewGuid() + "";
-            Car.IsDelete=false;
-            return Ok(_repository.Create(Car));
         }
      
 
@@ -65,9 +68,11 @@ namespace TemplateWebApiPhucThinh.Controllers
              var claims = User.Claims.Select(claim => new { claim.Type, claim.Value }).ToDictionary( t => t.Type, t => t.Value);
             if(claims.ContainsKey("name")){
                 if( claims["name"].Equals("ADMIN") || claims["name"].Equals("MANAGER") )
+                 return Ok(_repository.Delete(id));
+            }else{
                 return Forbid();
             }
-            return Ok(_repository.Delete(id));
+                return Forbid();
         }
 
         [Authorize()]
@@ -78,9 +83,11 @@ namespace TemplateWebApiPhucThinh.Controllers
              var claims = User.Claims.Select(claim => new { claim.Type, claim.Value }).ToDictionary( t => t.Type, t => t.Value);
             if(claims.ContainsKey("name")){
                 if( claims["name"].Equals("ADMIN") || claims["name"].Equals("MANAGER") )
-                    return Forbid();
+                return Ok(_repository.Update(id, Car));
+            }else{
+                return Forbid();
             }
-            return Ok(_repository.Update(id, Car));
+            return Forbid();
         }
 
         [HttpGet]
@@ -133,15 +140,18 @@ namespace TemplateWebApiPhucThinh.Controllers
         {
             var claims = User.Claims.Select(claim => new { claim.Type, claim.Value }).ToDictionary( t => t.Type, t => t.Value);
             if(claims.ContainsKey("name")){
-                if( claims["name"].Equals("ADMIN") || claims["name"].Equals("MANAGER") )
+                if( claims["name"].Equals("ADMIN") || claims["name"].Equals("MANAGER") ){
+                    if (string.IsNullOrWhiteSpace(id))
+                    {
+                        return BadRequest();
+                    }
+                    return Ok(_repository.DeleteEnable(id));
+                }
+            }else{
                 return Forbid();
             }
+                return Forbid();
 
-            if (string.IsNullOrWhiteSpace(id))
-            {
-                return BadRequest();
-            }
-            return Ok(_repository.DeleteEnable(id));
         }
 
         [HttpGet]

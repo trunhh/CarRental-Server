@@ -5,10 +5,10 @@ using System.Linq;
 using TemplateWebApiPhucThinh.Data.ModelJoin;
 using TemplateWebApiPhucThinh.Common;
 using System.Collections.Generic;
-
+using Microsoft.AspNetCore.Authorization;
 namespace TemplateWebApiPhucThinh.Controllers
 {
-    [Authorize()]
+    // [Authorize()]
     [Route("[controller]")]
     [ApiController]
     public class CustomerOrderJoinController : ControllerBase

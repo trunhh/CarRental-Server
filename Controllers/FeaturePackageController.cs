@@ -6,7 +6,7 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using TemplateWebApiPhucThinh.Data.Model;
-
+using Microsoft.AspNetCore.Authorization;
 using TemplateWebApiPhucThinh.ModelValidation;
 using TemplateWebApiPhucThinh.Repository.IRepository;
 
@@ -41,6 +41,7 @@ namespace TemplateWebApiPhucThinh.Controllers
             }else{
                 return Forbid();
             }
+                return Forbid();
            
         }
      
@@ -57,6 +58,7 @@ namespace TemplateWebApiPhucThinh.Controllers
             }else{
                 return Forbid();
             }
+                return Forbid();
            
         }
 
@@ -72,6 +74,7 @@ namespace TemplateWebApiPhucThinh.Controllers
             }else{
                 return Forbid();
             }
+                return Forbid();
             
         }
         [HttpPut]
@@ -86,6 +89,7 @@ namespace TemplateWebApiPhucThinh.Controllers
             }else{
                 return Forbid();
             }
+                return Forbid();
             
             
         }
@@ -101,6 +105,7 @@ namespace TemplateWebApiPhucThinh.Controllers
             }else{
                 return Forbid();
             }
+                return Forbid();
         }
 
          [HttpGet]
@@ -115,6 +120,7 @@ namespace TemplateWebApiPhucThinh.Controllers
             }else{
                 return Forbid();
             }
+                return Forbid();
         }
          [HttpGet]
         [Route("CountAll/pagesize/pageNow")]
@@ -128,6 +134,7 @@ namespace TemplateWebApiPhucThinh.Controllers
             }else{
                 return Forbid();
             }
+                return Forbid();
            
         }
         [HttpDelete]
@@ -146,6 +153,7 @@ namespace TemplateWebApiPhucThinh.Controllers
                         }else{
                             return Forbid();
                         }
+                            return Forbid();
         }
     }
 }

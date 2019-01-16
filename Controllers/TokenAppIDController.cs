@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using TemplateWebApiPhucThinh.Data.ModelIdentityToken;
 using TemplateWebApiPhucThinh.MethodAllwaysUse;
-
+using Microsoft.AspNetCore.Authorization;
 namespace TemplateWebApiPhucThinh.Controllers
 {
 
