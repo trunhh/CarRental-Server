@@ -95,20 +95,20 @@ namespace TemplateWebApiPhucThinh.Controllers
             
         }
 
-        [Authorize()]
+        // [Authorize()]
         [HttpGet]
         [Route("Paging/pagesize/pageNow")]
         public IActionResult Paging(int pagesize, int pageNow)
         {
-             var claims = User.Claims.Select(claim => new { claim.Type, claim.Value }).ToDictionary( t => t.Type, t => t.Value);
-            if(claims.ContainsKey("name")){
-                if( claims["name"].Equals("ADMIN") || claims["name"].Equals("MANAGER") ){
+            //  var claims = User.Claims.Select(claim => new { claim.Type, claim.Value }).ToDictionary( t => t.Type, t => t.Value);
+            // if(claims.ContainsKey("name")){
+            //     if( claims["name"].Equals("ADMIN") || claims["name"].Equals("MANAGER") ){
                      return Ok(_repository.Paging(pagesize, pageNow, "color"));
-                }
-            }else{
-                return Forbid();
-            }
-                return Forbid();
+            //     }
+            // }else{
+            //     return Forbid();
+            // }
+            //     return Forbid();
         }
 
         [Authorize()]
