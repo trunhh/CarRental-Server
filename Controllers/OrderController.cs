@@ -35,7 +35,7 @@ namespace TemplateWebApiPhucThinh.Controllers
             // if(claims.ContainsKey("name")){
             //     if( claims["name"].Equals("ADMIN") || claims["name"].Equals("MANAGER") ){
                     Orders.Id = Guid.NewGuid() + "";
-                    Orders.DateOrder=DateTime.Now.ToString("dd/MM/yyyy");
+                    Orders.DateOrder= DateTime.Now;
                     Orders.IsDelete=false;
                     return Ok(_repository.Create(Orders));
             //     }
