@@ -4,5 +4,10 @@
         <name>TemplateWebApiPhucThinh</name>
     </assembly>
     <members>
+        <member name="M:TemplateWebApiPhucThinh.Controllers.OrdersController.CountAllDataForOrderPartner(System.String)">
+            <summary>
+            Api này trả về số tổng các đơn hàng của partner thông qua tài khoản đăng nhập
+            </summary>
+        </member>
     </members>
 </doc>

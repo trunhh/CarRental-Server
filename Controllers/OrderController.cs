@@ -128,7 +128,7 @@ namespace TemplateWebApiPhucThinh.Controllers
         }
 
         [Authorize()]
-         [HttpGet]
+        [HttpGet]
         [Route("CountAll/pagesize/pageNow")]
         public IActionResult CountAll(int pagesize, int pageNow)
         {
@@ -220,14 +220,14 @@ namespace TemplateWebApiPhucThinh.Controllers
         }
 
         [Authorize()]
-         [HttpGet]
+        [HttpGet]
         [Route("PagingConditionGetByEmail/pagesize/pageNow/condition")]
-        public IActionResult PagingConditionGetByEmail(int pagesize, int pageNow,string condition)
+        public IActionResult PagingConditionGetByEmail(int pagesize, int pageNow, string condition)
         {
             if(String.IsNullOrEmpty(condition)){
                 condition="";
             }
-             var claims = User.Claims.Select(claim => new { claim.Type, claim.Value }).ToDictionary( t => t.Type, t => t.Value);
+            var claims = User.Claims.Select(claim => new { claim.Type, claim.Value }).ToDictionary( t => t.Type, t => t.Value);
             if(claims.ContainsKey("name")){
                 if( !claims["name"].Equals("ADMIN") || !claims["name"].Equals("MANAGER") ){
                  var list = (from _car in context.Car
@@ -243,5 +243,37 @@ namespace TemplateWebApiPhucThinh.Controllers
                 }
              return Forbid();
     }
+
+        ///<summary>
+        ///Api này trả về số tổng các đơn hàng của partner thông qua tài khoản đăng nhập
+        ///</summary>
+        [Authorize()]
+        [HttpGet]
+        [Route("CountAllDataForOrderPartner")]
+        public IActionResult CountAllDataForOrderPartner(string condition)
+        {
+            if(String.IsNullOrEmpty(condition)){
+                condition="";
+            }
+            var claims = User.Claims.Select(claim => new { claim.Type, claim.Value }).ToDictionary( t => t.Type, t => t.Value);
+            if(claims.ContainsKey("name")){
+                if( claims["name"].Equals("ADMIN") || claims["name"].Equals("MANAGER") ){
+                      var list = (from _car in context.Car
+                        join _partnerCar in context.PartnerCar on _car.Id equals _partnerCar.IsCar
+                        join _partner in context.Partner on _partnerCar.IdPartner equals _partner.Id
+                        join _order in context.Orders on _car.Id equals _order.NameCar
+                        where _car.IsDelete==false
+                        where _partner.Email==claims["email"]
+                        where _car.Name.Contains(condition)
+                        select _order).OrderByDescending(x => x.PriceOrder).ToList();
+                   return Ok(list.Count());
+                }
+            }else{
+                return Forbid();
+            }
+            return Forbid();
+           
+
+        }
 }
 }
