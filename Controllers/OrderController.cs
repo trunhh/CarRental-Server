@@ -33,7 +33,7 @@ namespace TemplateWebApiPhucThinh.Controllers
         {
             var claims = User.Claims.Select(claim => new { claim.Type, claim.Value }).ToDictionary( t => t.Type, t => t.Value);
             if(claims.ContainsKey("name")){
-                if( claims["name"].Equals("ADMIN") || claims["name"].Equals("MANAGER") || !claims["name"].Equals("PARTNER") ){
+                if( claims["name"].Equals("ADMIN") || claims["name"].Equals("MANAGER") || claims["name"].Equals("PARTNER") ){
                     Orders.Id = Guid.NewGuid() + "";
                     Orders.IsDelete=false;
                     return Ok(_repository.Create(Orders));
@@ -49,7 +49,7 @@ namespace TemplateWebApiPhucThinh.Controllers
         {
              var claims = User.Claims.Select(claim => new { claim.Type, claim.Value }).ToDictionary( t => t.Type, t => t.Value);
             if(claims.ContainsKey("name")){
-                if( claims["name"].Equals("ADMIN") || claims["name"].Equals("MANAGER") || !claims["name"].Equals("PARTNER") ){
+                if( claims["name"].Equals("ADMIN") || claims["name"].Equals("MANAGER") || claims["name"].Equals("PARTNER") ){
                      return Ok(_repository.GetById(id));
                 }
             }else{
@@ -65,7 +65,7 @@ namespace TemplateWebApiPhucThinh.Controllers
         {
              var claims = User.Claims.Select(claim => new { claim.Type, claim.Value }).ToDictionary( t => t.Type, t => t.Value);
             if(claims.ContainsKey("name")){
-                if( claims["name"].Equals("ADMIN") || claims["name"].Equals("MANAGER") || !claims["name"].Equals("PARTNER") ){
+                if( claims["name"].Equals("ADMIN") || claims["name"].Equals("MANAGER") || claims["name"].Equals("PARTNER") ){
                      return Ok(_repository.Delete(id));
                 }
             }else{
@@ -80,7 +80,7 @@ namespace TemplateWebApiPhucThinh.Controllers
         {
              var claims = User.Claims.Select(claim => new { claim.Type, claim.Value }).ToDictionary( t => t.Type, t => t.Value);
             if(claims.ContainsKey("name")){
-                if( claims["name"].Equals("ADMIN") || claims["name"].Equals("MANAGER") || !claims["name"].Equals("PARTNER") ){
+                if( claims["name"].Equals("ADMIN") || claims["name"].Equals("MANAGER") || claims["name"].Equals("PARTNER") ){
                      return Ok(_repository.Update(id, Orders));
                 }
             }else{
@@ -95,7 +95,7 @@ namespace TemplateWebApiPhucThinh.Controllers
         {
              var claims = User.Claims.Select(claim => new { claim.Type, claim.Value }).ToDictionary( t => t.Type, t => t.Value);
             if(claims.ContainsKey("name")){
-                if( claims["name"].Equals("ADMIN") || claims["name"].Equals("MANAGER") || !claims["name"].Equals("PARTNER") ){
+                if( claims["name"].Equals("ADMIN") || claims["name"].Equals("MANAGER") || claims["name"].Equals("PARTNER") ){
                      return Ok(_repository.Paging(pagesize, pageNow, "color"));
                 }
             }else{
@@ -110,7 +110,7 @@ namespace TemplateWebApiPhucThinh.Controllers
         {
              var claims = User.Claims.Select(claim => new { claim.Type, claim.Value }).ToDictionary( t => t.Type, t => t.Value);
             if(claims.ContainsKey("name")){
-                if( claims["name"].Equals("ADMIN") || claims["name"].Equals("MANAGER") || !claims["name"].Equals("PARTNER") ){
+                if( claims["name"].Equals("ADMIN") || claims["name"].Equals("MANAGER") || claims["name"].Equals("PARTNER") ){
                      return Ok(_repository.CountOfPaging(pagesize, pageNow));
                 }
             }else{
@@ -124,7 +124,7 @@ namespace TemplateWebApiPhucThinh.Controllers
         {
             var claims = User.Claims.Select(claim => new { claim.Type, claim.Value }).ToDictionary( t => t.Type, t => t.Value);
             if(claims.ContainsKey("name")){
-                if( claims["name"].Equals("ADMIN") || claims["name"].Equals("MANAGER") || !claims["name"].Equals("PARTNER") ){
+                if( claims["name"].Equals("ADMIN") || claims["name"].Equals("MANAGER") || claims["name"].Equals("PARTNER") ){
                       return Ok(_repository.CountAll());
                 }
             }else{
@@ -140,7 +140,7 @@ namespace TemplateWebApiPhucThinh.Controllers
         {
             var claims = User.Claims.Select(claim => new { claim.Type, claim.Value }).ToDictionary( t => t.Type, t => t.Value);
             if(claims.ContainsKey("name")){
-                if( claims["name"].Equals("ADMIN") || claims["name"].Equals("MANAGER") || !claims["name"].Equals("PARTNER") ){
+                if( claims["name"].Equals("ADMIN") || claims["name"].Equals("MANAGER") || claims["name"].Equals("PARTNER") ){
                      if (string.IsNullOrWhiteSpace(id))
                     {
                         return BadRequest();
@@ -160,7 +160,7 @@ namespace TemplateWebApiPhucThinh.Controllers
         {
             var claims = User.Claims.Select(claim => new { claim.Type, claim.Value }).ToDictionary( t => t.Type, t => t.Value);
             if(claims.ContainsKey("name")){
-                if( claims["name"].Equals("ADMIN") || claims["name"].Equals("MANAGER") || !claims["name"].Equals("PARTNER") ){
+                if( claims["name"].Equals("ADMIN") || claims["name"].Equals("MANAGER") || claims["name"].Equals("PARTNER") ){
                        return Ok(_repository.PagingCondition(pagesize, pageNow, condition));
                 }
             }else{
@@ -176,7 +176,7 @@ namespace TemplateWebApiPhucThinh.Controllers
             
             var claims = User.Claims.Select(claim => new { claim.Type, claim.Value }).ToDictionary( t => t.Type, t => t.Value);
             if(claims.ContainsKey("name")){
-                if( claims["name"].Equals("ADMIN") || claims["name"].Equals("MANAGER") || !claims["name"].Equals("PARTNER") ){
+                if( claims["name"].Equals("ADMIN") || claims["name"].Equals("MANAGER") || claims["name"].Equals("PARTNER") ){
                     return Ok(_repository.CountCondition(condition));
                 }
             }else{
@@ -193,7 +193,7 @@ namespace TemplateWebApiPhucThinh.Controllers
         {
             var claims = User.Claims.Select(claim => new { claim.Type, claim.Value }).ToDictionary( t => t.Type, t => t.Value);
             if(claims.ContainsKey("name")){
-                if( claims["name"].Equals("ADMIN") || claims["name"].Equals("MANAGER") || !claims["name"].Equals("PARTNER") ){
+                if( claims["name"].Equals("ADMIN") || claims["name"].Equals("MANAGER") || claims["name"].Equals("PARTNER") ){
                      return Ok(_repository.PagingConditionPrice( condition,  pageIndex,  pageSize,  sortOrder,  priceStart,  priceEnd));
                 }
             }else{
