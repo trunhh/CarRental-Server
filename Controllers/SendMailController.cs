@@ -27,7 +27,7 @@ namespace TemplateWebApiPhucThinh.Controllers
             using (var client =new SmtpClient())
             {
                  client.Timeout = 1000 * 20;
-                client.Connect("smtp.gmail.com",587,false);
+                client.Connect("smtp.gmail.com",587,true);
                 client.Authenticate("nguyenphucthinhdh15dtb@gmail.com", "thinh1997");
                 client.Send(message);
                 client.Disconnect(true);
@@ -55,7 +55,7 @@ namespace TemplateWebApiPhucThinh.Controllers
             using (var client = new SmtpClient())
             {
                  client.Timeout = 1000 * 20;
-                client.Connect("smtp.gmail.com", 587, false);
+                client.Connect("smtp.gmail.com", 587, true);
                 client.Authenticate("nguyenphucthinhdh15dtb@gmail.com", "thinh1997");
                 client.Send(message);
                 client.Disconnect(true);
