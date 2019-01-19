@@ -221,5 +221,51 @@ namespace TemplateWebApiPhucThinh.Controllers
             
 
         }
+        [HttpGet]
+        [Route("CountPagingConditionGetByEmail/condition")]
+        public IActionResult CountPagingConditionGetByEmail(string condition)
+        {
+            if(String.IsNullOrEmpty(condition)){
+                condition="";
+            }
+             var claims = User.Claims.Select(claim => new { claim.Type, claim.Value }).ToDictionary( t => t.Type, t => t.Value);
+            if(claims.ContainsKey("name")){
+                if( !claims["name"].Equals("ADMIN") || !claims["name"].Equals("MANAGER") ){
+                 var list = (from _car in context.Car
+                 join _partnerCar in context.PartnerCar on _car.Id equals _partnerCar.IsCar
+                 join _partner in context.Partner on _partnerCar.IdPartner equals _partner.Id
+                where _car.IsDelete==false
+                where _partner.Email==claims["email"]
+                where _car.Name.Contains(condition)
+                select _car).Count();
+                return Ok(list);
+                    }
+                }
+             return Forbid();
+            
+
+        }
+        [HttpGet]
+        [Route("CountAllPagingConditionGetByEmail")]
+        public IActionResult CountAllPagingConditionGetByEmail()
+        {
+            
+             var claims = User.Claims.Select(claim => new { claim.Type, claim.Value }).ToDictionary( t => t.Type, t => t.Value);
+            if(claims.ContainsKey("name")){
+                if( !claims["name"].Equals("ADMIN") || !claims["name"].Equals("MANAGER") ){
+                 var list = (from _car in context.Car
+                 join _partnerCar in context.PartnerCar on _car.Id equals _partnerCar.IsCar
+                 join _partner in context.Partner on _partnerCar.IdPartner equals _partner.Id
+                where _car.IsDelete==false
+                where _partner.Email==claims["email"]
+                
+                select _car).Count();
+                return Ok(list);
+                    }
+                }
+             return Forbid();
+            
+
+        }
     }
 }
