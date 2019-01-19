@@ -28,10 +28,10 @@ namespace TemplateWebApiPhucThinh.Controllers
             };
             using (var client =new SmtpClient())
             {
-                 client.Connect ("smtp.mail.me.com", 465, SecureSocketOptions.SslOnConnect);
+                
 
                 client.AuthenticationMechanisms.Remove ("XOAUTH2");
-                client.Connect("smtp.gmail.com",465,true);
+                client.Connect("smtp.gmail.com",465,SecureSocketOptions.SslOnConnect);
                 client.Authenticate("nguyenphucthinhdh15dtb@gmail.com", "thinh1997");
                 client.Send(message);
                 client.Disconnect(true);
@@ -58,9 +58,9 @@ namespace TemplateWebApiPhucThinh.Controllers
             };
             using (var client = new SmtpClient())
             {
-                 client.Connect ("smtp.mail.me.com", 465, SecureSocketOptions.SslOnConnect);
-                client.AuthenticationMechanisms.Remove ("XOAUTH2");
-                client.Connect("smtp.gmail.com", 465, true);
+                
+              
+                client.Connect("smtp.gmail.com", 465, SecureSocketOptions.SslOnConnect);
                 client.Authenticate("nguyenphucthinhdh15dtb@gmail.com", "thinh1997");
                 client.Send(message);
                 client.Disconnect(true);
