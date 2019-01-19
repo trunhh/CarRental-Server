@@ -5,8 +5,6 @@ using MimeKit;
 
 using MailKit.Net.Smtp;
 using Microsoft.AspNetCore.Authorization;
-using MailKit.Security;
-
 namespace TemplateWebApiPhucThinh.Controllers
 {
     [Route("[controller]")]
@@ -28,9 +26,8 @@ namespace TemplateWebApiPhucThinh.Controllers
             };
             using (var client =new SmtpClient())
             {
-                
 
-                 client.Connect("smtp.gmail.com", 587, true);
+                client.Connect("smtp.gmail.com",587,false);
                 client.Authenticate("nguyenphucthinhdh15dtb@gmail.com", "thinh1997");
                 client.Send(message);
                 client.Disconnect(true);
@@ -57,9 +54,8 @@ namespace TemplateWebApiPhucThinh.Controllers
             };
             using (var client = new SmtpClient())
             {
-                
-              
-               client.Connect("smtp.gmail.com", 587, true);
+
+                client.Connect("smtp.gmail.com", 587, false);
                 client.Authenticate("nguyenphucthinhdh15dtb@gmail.com", "thinh1997");
                 client.Send(message);
                 client.Disconnect(true);
