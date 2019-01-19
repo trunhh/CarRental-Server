@@ -30,8 +30,7 @@ namespace TemplateWebApiPhucThinh.Controllers
             {
                 
 
-                client.AuthenticationMechanisms.Remove ("XOAUTH2");
-                client.Connect("smtp.gmail.com",465,SecureSocketOptions.SslOnConnect);
+                 client.Connect("smtp.gmail.com", 465, SecureSocketOptions.Auto);
                 client.Authenticate("nguyenphucthinhdh15dtb@gmail.com", "thinh1997");
                 client.Send(message);
                 client.Disconnect(true);
@@ -60,7 +59,7 @@ namespace TemplateWebApiPhucThinh.Controllers
             {
                 
               
-                client.Connect("smtp.gmail.com", 465, SecureSocketOptions.SslOnConnect);
+                client.Connect("smtp.gmail.com", 465, SecureSocketOptions.Auto);
                 client.Authenticate("nguyenphucthinhdh15dtb@gmail.com", "thinh1997");
                 client.Send(message);
                 client.Disconnect(true);
