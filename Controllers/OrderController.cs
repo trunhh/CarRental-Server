@@ -202,7 +202,8 @@ namespace TemplateWebApiPhucThinh.Controllers
                 return Forbid();
             
         }
-         [HttpGet]
+
+        [HttpGet]
         [Route("PagingConditionGetByEmail/pagesize/pageNow/condition")]
         public IActionResult PagingConditionGetByEmail(int pagesize, int pageNow,string condition)
         {
@@ -246,7 +247,8 @@ namespace TemplateWebApiPhucThinh.Controllers
                 }
              return Forbid();
     }
-    [HttpGet]
+
+        [HttpGet]
         [Route("CountPagingConditionGetByEmail/condition")]
         public IActionResult CountPagingConditionGetByEmail(string condition)
         {
