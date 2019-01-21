@@ -35,7 +35,7 @@ namespace TemplateWebApiPhucThinh.Controllers
         {
             var claims = User.Claims.Select(claim => new { claim.Type, claim.Value }).ToDictionary( t => t.Type, t => t.Value);
             if(claims.ContainsKey("name")){
-                if( claims["name"].Equals("ADMIN") || claims["name"].Equals("MANAGER") )
+                if( claims["name"].Equals("ADMIN") || claims["name"].Equals("MANAGER") || claims["name"].Equals("PARTNER") )
                     Car.Id = Guid.NewGuid() + "";
                     Car.IsDelete=false;
                     return Ok(_repository.Create(Car));
@@ -68,7 +68,7 @@ namespace TemplateWebApiPhucThinh.Controllers
         {
              var claims = User.Claims.Select(claim => new { claim.Type, claim.Value }).ToDictionary( t => t.Type, t => t.Value);
             if(claims.ContainsKey("name")){
-                if( claims["name"].Equals("ADMIN") || claims["name"].Equals("MANAGER") )
+                if( claims["name"].Equals("ADMIN") || claims["name"].Equals("MANAGER") || claims["name"].Equals("PARTNER"))
                  return Ok(_repository.Delete(id));
             }else{
                 return Forbid();
@@ -83,7 +83,7 @@ namespace TemplateWebApiPhucThinh.Controllers
         {
              var claims = User.Claims.Select(claim => new { claim.Type, claim.Value }).ToDictionary( t => t.Type, t => t.Value);
             if(claims.ContainsKey("name")){
-                if( claims["name"].Equals("ADMIN") || claims["name"].Equals("MANAGER") )
+                if( claims["name"].Equals("ADMIN") || claims["name"].Equals("MANAGER") || claims["name"].Equals("PARTNER"))
                 return Ok(_repository.Update(id, Car));
             }else{
                 return Forbid();
@@ -141,7 +141,7 @@ namespace TemplateWebApiPhucThinh.Controllers
         {
             var claims = User.Claims.Select(claim => new { claim.Type, claim.Value }).ToDictionary( t => t.Type, t => t.Value);
             if(claims.ContainsKey("name")){
-                if( claims["name"].Equals("ADMIN") || claims["name"].Equals("MANAGER") ){
+                if( claims["name"].Equals("ADMIN") || claims["name"].Equals("MANAGER") || claims["name"].Equals("PARTNER")){
                     if (string.IsNullOrWhiteSpace(id))
                     {
                         return BadRequest();
@@ -183,6 +183,7 @@ namespace TemplateWebApiPhucThinh.Controllers
 
 
 
+
         [HttpGet]
         [Route("PagingConditionPrice/condition/pageIndex/pageSize/sortOrder/priceStart/priceEnd")]
         public IActionResult PagingConditionPrice(string condition, int pageIndex, int pageSize, string sortOrder, int priceStart, int priceEnd)
@@ -197,6 +198,7 @@ namespace TemplateWebApiPhucThinh.Controllers
 
         }
 
+        [Authorize()]
         [HttpGet]
         [Route("PagingConditionGetByEmail/pagesize/pageNow/condition")]
         public IActionResult PagingConditionGetByEmail(int pagesize, int pageNow,string condition)
@@ -206,7 +208,7 @@ namespace TemplateWebApiPhucThinh.Controllers
             }
              var claims = User.Claims.Select(claim => new { claim.Type, claim.Value }).ToDictionary( t => t.Type, t => t.Value);
             if(claims.ContainsKey("name")){
-                 if( claims["name"].Equals("ADMIN") || claims["name"].Equals("MANAGER") || !claims["name"].Equals("PARTNER") ){
+                 if( claims["name"].Equals("ADMIN") || claims["name"].Equals("MANAGER") || claims["name"].Equals("PARTNER") ){
                  var list = (from _car in context.Car
                  join _partnerCar in context.PartnerCar on _car.Id equals _partnerCar.IsCar
                  join _partner in context.Partner on _partnerCar.IdPartner equals _partner.Id
@@ -221,6 +223,8 @@ namespace TemplateWebApiPhucThinh.Controllers
             
 
         }
+
+        [Authorize()]
         [HttpGet]
         [Route("CountPagingConditionGetByEmail/condition")]
         public IActionResult CountPagingConditionGetByEmail(string condition)
@@ -230,7 +234,7 @@ namespace TemplateWebApiPhucThinh.Controllers
             }
              var claims = User.Claims.Select(claim => new { claim.Type, claim.Value }).ToDictionary( t => t.Type, t => t.Value);
             if(claims.ContainsKey("name")){
-                 if( claims["name"].Equals("ADMIN") || claims["name"].Equals("MANAGER") || !claims["name"].Equals("PARTNER") ){
+                 if( claims["name"].Equals("ADMIN") || claims["name"].Equals("MANAGER") || claims["name"].Equals("PARTNER") ){
                  var list = (from _car in context.Car
                  join _partnerCar in context.PartnerCar on _car.Id equals _partnerCar.IsCar
                  join _partner in context.Partner on _partnerCar.IdPartner equals _partner.Id
@@ -245,6 +249,8 @@ namespace TemplateWebApiPhucThinh.Controllers
             
 
         }
+
+        [Authorize()]
         [HttpGet]
         [Route("CountAllPagingConditionGetByEmail")]
         public IActionResult CountAllPagingConditionGetByEmail()
@@ -252,7 +258,7 @@ namespace TemplateWebApiPhucThinh.Controllers
             
              var claims = User.Claims.Select(claim => new { claim.Type, claim.Value }).ToDictionary( t => t.Type, t => t.Value);
             if(claims.ContainsKey("name")){
-                 if( claims["name"].Equals("ADMIN") || claims["name"].Equals("MANAGER") || !claims["name"].Equals("PARTNER") ){
+                 if( claims["name"].Equals("ADMIN") || claims["name"].Equals("MANAGER") || claims["name"].Equals("PARTNER") ){
                  var list = (from _car in context.Car
                  join _partnerCar in context.PartnerCar on _car.Id equals _partnerCar.IsCar
                  join _partner in context.Partner on _partnerCar.IdPartner equals _partner.Id
