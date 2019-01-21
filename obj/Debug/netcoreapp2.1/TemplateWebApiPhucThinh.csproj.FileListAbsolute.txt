@@ -161,18 +161,18 @@ E:\THUONG_MAI_DIEN_TU\BACK_END\ThuongMaiDienTu-Backend\obj\Debug\netcoreapp2.1\T
 E:\THUONG_MAI_DIEN_TU\BACK_END\ThuongMaiDienTu-Backend\obj\Debug\netcoreapp2.1\TemplateWebApiPhucThinh.xml
 E:\THUONG_MAI_DIEN_TU\BACK_END\ThuongMaiDienTu-Backend\obj\Debug\netcoreapp2.1\TemplateWebApiPhucThinh.pdb
 >>>>>>> 7c57f7c04c8ff84ecdade2dc5abd0176c65f9af1
-C:\Users\thinh\Desktop\git TMDT\ThuongMaiDienTu-Backend\bin\Debug\netcoreapp2.1\TemplateWebApiPhucThinh.deps.json
-C:\Users\thinh\Desktop\git TMDT\ThuongMaiDienTu-Backend\bin\Debug\netcoreapp2.1\TemplateWebApiPhucThinh.runtimeconfig.json
-C:\Users\thinh\Desktop\git TMDT\ThuongMaiDienTu-Backend\bin\Debug\netcoreapp2.1\TemplateWebApiPhucThinh.runtimeconfig.dev.json
-C:\Users\thinh\Desktop\git TMDT\ThuongMaiDienTu-Backend\bin\Debug\netcoreapp2.1\TemplateWebApiPhucThinh.dll
-C:\Users\thinh\Desktop\git TMDT\ThuongMaiDienTu-Backend\bin\Debug\netcoreapp2.1\TemplateWebApiPhucThinh.pdb
-C:\Users\thinh\Desktop\git TMDT\ThuongMaiDienTu-Backend\bin\Debug\netcoreapp2.1\TemplateWebApiPhucThinh.xml
 C:\Users\thinh\Desktop\git TMDT\ThuongMaiDienTu-Backend\obj\Debug\netcoreapp2.1\TemplateWebApiPhucThinh.csprojAssemblyReference.cache
 C:\Users\thinh\Desktop\git TMDT\ThuongMaiDienTu-Backend\obj\Debug\netcoreapp2.1\TemplateWebApiPhucThinh.csproj.CoreCompileInputs.cache
 C:\Users\thinh\Desktop\git TMDT\ThuongMaiDienTu-Backend\obj\Debug\netcoreapp2.1\TemplateWebApiPhucThinh.RazorAssemblyInfo.cache
 C:\Users\thinh\Desktop\git TMDT\ThuongMaiDienTu-Backend\obj\Debug\netcoreapp2.1\TemplateWebApiPhucThinh.RazorAssemblyInfo.cs
 C:\Users\thinh\Desktop\git TMDT\ThuongMaiDienTu-Backend\obj\Debug\netcoreapp2.1\TemplateWebApiPhucThinh.AssemblyInfoInputs.cache
 C:\Users\thinh\Desktop\git TMDT\ThuongMaiDienTu-Backend\obj\Debug\netcoreapp2.1\TemplateWebApiPhucThinh.AssemblyInfo.cs
+C:\Users\thinh\Desktop\git TMDT\ThuongMaiDienTu-Backend\bin\Debug\netcoreapp2.1\TemplateWebApiPhucThinh.deps.json
+C:\Users\thinh\Desktop\git TMDT\ThuongMaiDienTu-Backend\bin\Debug\netcoreapp2.1\TemplateWebApiPhucThinh.runtimeconfig.json
+C:\Users\thinh\Desktop\git TMDT\ThuongMaiDienTu-Backend\bin\Debug\netcoreapp2.1\TemplateWebApiPhucThinh.runtimeconfig.dev.json
+C:\Users\thinh\Desktop\git TMDT\ThuongMaiDienTu-Backend\bin\Debug\netcoreapp2.1\TemplateWebApiPhucThinh.dll
+C:\Users\thinh\Desktop\git TMDT\ThuongMaiDienTu-Backend\bin\Debug\netcoreapp2.1\TemplateWebApiPhucThinh.pdb
+C:\Users\thinh\Desktop\git TMDT\ThuongMaiDienTu-Backend\bin\Debug\netcoreapp2.1\TemplateWebApiPhucThinh.xml
 C:\Users\thinh\Desktop\git TMDT\ThuongMaiDienTu-Backend\obj\Debug\netcoreapp2.1\TemplateWebApiPhucThinh.RazorTargetAssemblyInfo.cache
 C:\Users\thinh\Desktop\git TMDT\ThuongMaiDienTu-Backend\obj\Debug\netcoreapp2.1\TemplateWebApiPhucThinh.dll
 C:\Users\thinh\Desktop\git TMDT\ThuongMaiDienTu-Backend\obj\Debug\netcoreapp2.1\TemplateWebApiPhucThinh.xml

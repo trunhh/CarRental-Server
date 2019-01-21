@@ -17,10 +17,11 @@ namespace TemplateWebApiPhucThinh.Controllers
         public  IActionResult sendMail(string email ,string contentBody)
         {
             var message = new MimeMessage();
+            
             message.From.Add(new MailboxAddress( "Phuc Thinh", "nguyenphucthinhdh15dtb@gmail.com"));
             message.To.Add(new MailboxAddress("chao ban", email));
             message.Subject = "Cho thue Xe";
-            message.Body = new TextPart("plain")
+            message.Body = new TextPart("html")
             {
                 Text = contentBody
             };

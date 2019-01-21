@@ -226,11 +226,7 @@ namespace TemplateWebApiPhucThinh.Controllers
             }
              var claims = User.Claims.Select(claim => new { claim.Type, claim.Value }).ToDictionary( t => t.Type, t => t.Value);
             if(claims.ContainsKey("name")){
-<<<<<<< HEAD
-                if( !claims["name"].Equals("ADMIN") || !claims["name"].Equals("MANAGER") || claims["name"].Equals("PARTNER") ){
-=======
                 if( claims["name"].Equals("ADMIN") || claims["name"].Equals("MANAGER") || claims["name"].Equals("PARTNER") ){
->>>>>>> 85700244362857f5f6e754784fa335cd40af2dc2
                  var list = (from _car in context.Car
                  join _partnerCar in context.PartnerCar on _car.Id equals _partnerCar.IsCar
                  join _partner in context.Partner on _partnerCar.IdPartner equals _partner.Id
@@ -252,11 +248,7 @@ namespace TemplateWebApiPhucThinh.Controllers
         {
             var claims = User.Claims.Select(claim => new { claim.Type, claim.Value }).ToDictionary( t => t.Type, t => t.Value);
             if(claims.ContainsKey("name")){
-<<<<<<< HEAD
-                if( !claims["name"].Equals("ADMIN") || !claims["name"].Equals("MANAGER") || claims["name"].Equals("PARTNER") ){
-=======
                 if( claims["name"].Equals("ADMIN") || claims["name"].Equals("MANAGER") || claims["name"].Equals("PARTNER") ){
->>>>>>> 85700244362857f5f6e754784fa335cd40af2dc2
                  var list = (from _car in context.Car
                  join _partnerCar in context.PartnerCar on _car.Id equals _partnerCar.IsCar
                  join _partner in context.Partner on _partnerCar.IdPartner equals _partner.Id
@@ -280,11 +272,7 @@ namespace TemplateWebApiPhucThinh.Controllers
             }
              var claims = User.Claims.Select(claim => new { claim.Type, claim.Value }).ToDictionary( t => t.Type, t => t.Value);
             if(claims.ContainsKey("name")){
-<<<<<<< HEAD
-                if( !claims["name"].Equals("ADMIN") || !claims["name"].Equals("MANAGER") || claims["name"].Equals("PARTNER") ){
-=======
                 if( claims["name"].Equals("ADMIN") || claims["name"].Equals("MANAGER") || claims["name"].Equals("PARTNER") ){
->>>>>>> 85700244362857f5f6e754784fa335cd40af2dc2
                  var list = (from _car in context.Car
                  join _partnerCar in context.PartnerCar on _car.Id equals _partnerCar.IsCar
                  join _partner in context.Partner on _partnerCar.IdPartner equals _partner.Id
