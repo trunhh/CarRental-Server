@@ -183,6 +183,7 @@ namespace TemplateWebApiPhucThinh.Controllers
 
 
 
+
         [HttpGet]
         [Route("PagingConditionPrice/condition/pageIndex/pageSize/sortOrder/priceStart/priceEnd")]
         public IActionResult PagingConditionPrice(string condition, int pageIndex, int pageSize, string sortOrder, int priceStart, int priceEnd)
@@ -197,6 +198,7 @@ namespace TemplateWebApiPhucThinh.Controllers
 
         }
 
+        [Authorize()]
         [HttpGet]
         [Route("PagingConditionGetByEmail/pagesize/pageNow/condition")]
         public IActionResult PagingConditionGetByEmail(int pagesize, int pageNow,string condition)
@@ -221,6 +223,8 @@ namespace TemplateWebApiPhucThinh.Controllers
             
 
         }
+
+        [Authorize()]
         [HttpGet]
         [Route("CountPagingConditionGetByEmail/condition")]
         public IActionResult CountPagingConditionGetByEmail(string condition)
@@ -245,6 +249,8 @@ namespace TemplateWebApiPhucThinh.Controllers
             
 
         }
+
+        [Authorize()]
         [HttpGet]
         [Route("CountAllPagingConditionGetByEmail")]
         public IActionResult CountAllPagingConditionGetByEmail()
