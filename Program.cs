@@ -19,10 +19,11 @@ namespace TemplateWebApiPhucThinh
         }
 
        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-           WebHost.CreateDefaultBuilder(args)
-            .UseKestrel()
-                .UseContentRoot(Directory.GetCurrentDirectory())
-                .UseIISIntegration()
+           WebHost.CreateDefaultBuilder(args).UseKestrel(options => {
+                    
+                    options.Listen(IPAddress.Any, 5004);
+                })
+
                 .UseStartup<Startup>();
     }
 }

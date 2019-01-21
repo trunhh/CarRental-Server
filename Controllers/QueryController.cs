@@ -44,6 +44,33 @@ namespace TemplateWebApiPhucThinh.Controllers
                 return Forbid();
         }
 
+        [Authorize()]
+        [HttpGet]
+        [Route("ThongBaoParnertGanHetHan")]
+        public IActionResult ThongBaoParnertGanHetHan()
+        {
+            var claims = User.Claims.Select(claim => new { claim.Type, claim.Value }).ToDictionary( t => t.Type, t => t.Value);
+            if(claims.ContainsKey("name")){
+                if( claims["name"].Equals("PARTNER")){
+                    DateTime today = System.DateTime.Now;
+                    var List =
+                        (from _partner in context.Partner
+                        join _partnerTenantPackage in context.PartnerTenantPackage on _partner.Id equals _partnerTenantPackage.Id
+                        join _package in context.Package on _partnerTenantPackage.IdPackage equals _package.Id
+                        where _partner.IsDelete==false
+                        where _partner.Email==claims["email"]
+                        select new
+                        {
+                            DayHetHan =(_partnerTenantPackage.DateTenant.AddDays(Int32.Parse(_package.Name))-today).Days,
+                        }).Where(s=>s.DayHetHan<=10).ToList();
+                    return Ok(List);
+                }
+            }else{
+                return Forbid();
+            }
+                return Forbid();
+        }
+
         [HttpGet]
         [Route("FilterLocationAndDateDontBusy")]
         public IActionResult LocThanhPhoVaNgayXeRanh(string location ,string dateStart, string dateEnd)
