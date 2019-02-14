@@ -40,7 +40,7 @@ namespace TemplateWebApiPhucThinh.Data.Model
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Server=baitapgiuaky1997.database.windows.net;Database=giuaKy;User Id=kuthinh@baitapgiuaky1997;Password=Thinh1997;");
+                optionsBuilder.UseSqlServer("Server=baitapgiuaky1997.database.windows.net;Database=giuaKy;User Id=kuthinh@baitapgiuaky1997;Password={Hide}");
             }
         }
 
